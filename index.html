@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc Appointment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="text" placeholder="search" name="doctor_search" id="doctor_search">
+    <input type="text" placeholder="area" name="doctor_area" id="doctor_area">
+    <input type="submit" value="Search" id="search_btn">
+    <div id="searchSection">
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#search_btn").click(function () {
+                var doctor_type = $("#doctor_search").val();
+                var doctor_area = $("#doctor_area").val();
+                $.post("webservice.php", { search: doctor_type, area: doctor_area }, function (response) {
+                    $("#searchSection").html(response);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
